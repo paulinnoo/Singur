@@ -26,7 +26,7 @@
                 $sourcePath = $_FILES['file']['tmp_name'];       
                 $targetPath = "../images/index/category/".$_FILES['file']['name'];     
                 if(move_uploaded_file($sourcePath,$targetPath)) {
-                    $sql.=" foto = '$nomeImg'";
+                    $sql.=" ,foto = '$nomeImg'";
                 }
             }
 

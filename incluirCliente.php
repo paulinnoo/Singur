@@ -34,12 +34,13 @@
         }
         else
         {
-            $sql = "update  cliente set nome ='$nome',descricao='$descricao',duracao_servico='$duracao',id_categoria='$categoria_servico' ";
+            $sql = "update  cliente set nome ='$nome', sobrenome='$sobrenome', email='$email', senha='$senha', cep='$cep', latitude='$latitude', longitude='$longitude',
+            logradouro='$logradouro', bairro='$bairro', cidade='$cidade', estado='$estado', cpf='$cpf' ";
             if(is_uploaded_file($_FILES['file']['tmp_name'])) {          
                 $sourcePath = $_FILES['file']['tmp_name'];       
-                $targetPath = "../images/index/category/".$_FILES['file']['name'];     
+                $targetPath = "../images/index/cliente/".$_FILES['file']['name'];     
                 if(move_uploaded_file($sourcePath,$targetPath)) {
-                    $sql.=" foto = '$nomeImg'";
+                    $sql.=" ,foto = '$nomeImg'";
                 }
             }
 

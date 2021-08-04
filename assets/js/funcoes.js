@@ -398,6 +398,7 @@ function editarCliente(id)
             document.getElementById("txtEstadoCliente").value = data[0].estado;
             document.getElementById("txtCPFCliente").value = data[0].cpf;
             document.getElementById("txtSenhaCliente").value = data[0].senha;
+            document.getElementById("txtConfSenhaCliente").value = data[0].senha;
              
 
           }
@@ -502,6 +503,7 @@ function editarPrestador(id)
             document.getElementById("txtEstadoPrestador").value = data[0].estado;
             document.getElementById("txtCPFPrestador").value = data[0].cpf;
             document.getElementById("txtSenhaPrestador").value = data[0].senha;
+            document.getElementById("txtConfSenhaPrestador").value = data[0].senha;
              
 
           }
@@ -535,7 +537,80 @@ function excluirPrestador(id){
       
 
 }
-function completarPrestador(id){
+
+function excluirServico(id){
+       
+  $.ajax({
+      url:   'excluirServico.php',
+      type:  'POST',
+      cache: false,
+      data: {
+        id: id
+      },
+      error: function(data) {
+          console.log(data);
+      },
+      success: function() { 
+          confirm('Usuario excluido!');
+          document.location.reload(true);
+        
+      },
+      
+
+    });
+    
+
+}
+
+function excluirCategoria(id){
+       
+  $.ajax({
+      url:   'excluirCategoria.php',
+      type:  'POST',
+      cache: false,
+      data: {
+        id: id
+      },
+      error: function(data) {
+          console.log(data);
+      },
+      success: function() { 
+          confirm('Usuario excluido!');
+          document.location.reload(true);
+        
+      },
+      
+
+    });
+    
+
+}
+
+function excluirCliente(id){
+       
+  $.ajax({
+      url:   'excluirCliente.php',
+      type:  'POST',
+      cache: false,
+      data: {
+        id: id
+      },
+      error: function(data) {
+          console.log(data);
+      },
+      success: function() { 
+          confirm('Usuario excluido!');
+          document.location.reload(true);
+        
+      },
+      
+
+    });
+    
+
+}
+
+function completarPrestador(){
     var cep = document.getElementById("txtCEPPrestador").value;
 	const url = "https://brasilapi.com.br/api/cep/v2/";
         fetch(url+cep)
@@ -548,5 +623,96 @@ function completarPrestador(id){
                 document.getElementById("hddLatPrestador").value = ret.location.coordinates.latitude; 
                 document.getElementById("hddLongPrestador").value = ret.location.coordinates.longitude;                
             })
+
+}
+
+function completarCliente(){
+  var cep = document.getElementById("txtCEPCliente").value;
+const url = "https://brasilapi.com.br/api/cep/v2/";
+      fetch(url+cep)
+          .then(resp => resp.json())
+          .then(ret => { 
+              document.getElementById("txtLograCliente").value = ret.street;
+              document.getElementById("txtBairroCliente").value = ret.neighborhood;				
+              document.getElementById("txtCidadeCliente").value = ret.city; 
+              document.getElementById("txtEstadoCliente").value = ret.state;
+              document.getElementById("hddLatCliente").value = ret.location.coordinates.latitude; 
+              document.getElementById("hddLongCliente").value = ret.location.coordinates.longitude;                
+          })
+
+}
+
+function isValidCPF(cpf) {
+  if (typeof cpf !== "string") return false
+  cpf = cpf.replace(/[\s.-]*/igm, '')
+  if (
+      !cpf ||
+      cpf.length != 11 ||
+      cpf == "00000000000" ||
+      cpf == "11111111111" ||
+      cpf == "22222222222" ||
+      cpf == "33333333333" ||
+      cpf == "44444444444" ||
+      cpf == "55555555555" ||
+      cpf == "66666666666" ||
+      cpf == "77777777777" ||
+      cpf == "88888888888" ||
+      cpf == "99999999999" 
+  ) {
+      return false
+  }
+  var soma = 0
+  var resto
+  for (var i = 1; i <= 9; i++) 
+      soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
+  resto = (soma * 10) % 11
+  if ((resto == 10) || (resto == 11))  resto = 0
+  if (resto != parseInt(cpf.substring(9, 10)) ) return false
+  soma = 0
+  for (var i = 1; i <= 10; i++) 
+      soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
+  resto = (soma * 10) % 11
+  if ((resto == 10) || (resto == 11))  resto = 0
+  if (resto != parseInt(cpf.substring(10, 11) ) ) return false
+  return true
+}
+
+function validarPrestador(){
+  let cpf = document.getElementById("txtCPFPrestador").value;
+  let senha1 = document.getElementById("txtSenhaPrestador").value;
+  let senha2 = document.getElementById("txtConfSenhaPrestador").value;
+  if(isValidCPF(cpf)){
+    if(senha1 === senha2){
+      salvarPrestador();
+    }
+    else{
+      alert("Senhas não são iguais");
+    }
+        
+  }
+  else{
+    alert("CPF invalido");
+    
+  }
+
+}
+
+function validarCliente(){
+  let cpf = document.getElementById("txtCPFCliente").value;
+  let senha1 = document.getElementById("txtSenhaCliente").value;
+  let senha2 = document.getElementById("txtConfSenhaCliente").value;
+  if(isValidCPF(cpf)){
+    if(senha1 === senha2){
+      salvarCliente();
+    }
+    else{
+      alert("Senhas não são iguais");
+    }
+        
+  }
+  else{
+    alert("CPF invalido");
+    
+  }
 
 }

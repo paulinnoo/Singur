@@ -34,16 +34,18 @@
         }
         else
         {
-            $sql = "update  prestador set nome ='$nome' ";
+            $sql = "update  prestador set nome ='$nome', sobrenome='$sobrenome', email='$email', senha='$senha', cep='$cep', latitude='$latitude', longitude='$longitude',
+            logradouro='$logradouro', bairro='$bairro', cidade='$cidade', estado='$estado', cpf='$cpf' ";
             if(is_uploaded_file($_FILES['file']['tmp_name'])) {          
                 $sourcePath = $_FILES['file']['tmp_name'];       
-                $targetPath = "../images/index/category/".$_FILES['file']['name'];     
+                $targetPath = "../images/index/prestadores/".$_FILES['file']['name'];     
                 if(move_uploaded_file($sourcePath,$targetPath)) {
-                    $sql.=" foto = '$nomeImg'";
+                    $sql.=" ,logo = '$nomeImg'";
                 }
             }
 
              $sql.=" where id_prestador = $id";
+             
              $result = $mysqli->query($sql);
              echo "sucesso" ;
             

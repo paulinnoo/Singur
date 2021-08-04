@@ -67,7 +67,7 @@
                     <input type="file" name="userImage" class="form-control-file" id="uplPrestador">
                 </div>
                 <div class="form-group">                    
-                    <button class="btn btn-primary" id="btnSalvar" onclick="salvarPrestador();">Salvar</button>
+                    <button class="btn btn-primary" id="btnSalvar" onclick="validarPrestador();">Salvar</button>
                     <button class="btn btn-danger" id="btnLimpar" onclick="LimparCamposPrestador();">Limpar</button>
                 </div>               
             </div>

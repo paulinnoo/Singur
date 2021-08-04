@@ -30,12 +30,12 @@
                 
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Confirme a senha</label>
-                    <input type="password" style="max-width:300px;" class="form-control" id="txtConfSenhaCliente" onchange="verificarSenha();"></input>
+                    <input type="password" style="max-width:300px;" class="form-control" id="txtConfSenhaCliente"></input>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">CEP</label>
-                    <input type="tel" style="max-width:300px;" class="form-control"  id="txtCEPCliente" onchange="completar();" autofocus>                                 
+                    <input type="tel" style="max-width:300px;" class="form-control"  id="txtCEPCliente" onchange="completarCliente();" autofocus>                                 
                 </div>
 
                 <div class="form-group">
@@ -60,14 +60,14 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">CPF</label>
-                    <input type="tel" class="form-control"  id="txtCPFCliente" onchange="verificarCpf();" autofocus>
+                    <input type="tel" class="form-control"  id="txtCPFCliente">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlFile1">Foto do Cliente</label>
                     <input type="file" name="userImage" class="form-control-file" id="uplCliente">
                 </div>
                 <div class="form-group">                    
-                    <button class="btn btn-primary" id="btnSalvar" onclick="salvarCliente();">Salvar</button>
+                    <button class="btn btn-primary" id="btnSalvar" onclick="validarCliente();">Salvar</button>
                     <button class="btn btn-danger" id="btnLimpar" onclick="LimparCamposClientes();">Limpar</button>
                 </div>               
             </div>
