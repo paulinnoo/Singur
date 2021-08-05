@@ -57,19 +57,19 @@
                 </li>
                 <li>
                     <a href="servicos.php">
-                        <i class="pe-7s-news-paper"></i>
+                        <i class="pe-7s-hammer"></i>
                         <p>Serviços</p>
                     </a>
                 </li>
                 <li>
                     <a href="clientes.php">
-                        <i class="pe-7s-science"></i>
+                        <i class="pe-7s-smile"></i>
                         <p>Cliente</p>
                     </a>
                 </li>
                 <li>
                     <a href="prestadores.php">
-                        <i class="pe-7s-map-marker"></i>
+                        <i class="pe-7s-id"></i>
                         <p>Prestadores</p>
                     </a>
                 </li>
